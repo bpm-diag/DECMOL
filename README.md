@@ -1,0 +1,2 @@
+# DECMOL
+DEClare MOdel Learning
