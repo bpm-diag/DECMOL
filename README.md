@@ -12,7 +12,7 @@ Use the package manager pip to install project dependencies
 pip3 install -r requirements.txt
 ```
 ## Usage
-The tool provides different features 
+The tool provides different features, using the following command is possible to obtain a menu and selecting what you want to do.
 ```python
 python3 main.py -h
 ```
