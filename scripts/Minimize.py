@@ -1,0 +1,67 @@
+from pythomata import SimpleDFA
+from graphviz import Digraph
+import sys
+
+def dfaminimized(folder,al,automaton,i,typ,j):
+	#creation alphabet
+	alphabet = set()
+	fp = open(al,"r")
+	lines = fp.readlines()
+	for line in lines:
+		alphabet.add(line.strip())
+
+	#my automaton to pythomata automaton
+	states = set()
+	initial_state = "";
+	accepting_states = set()
+	fp = open(folder+automaton+".txt","r")
+	lines = fp.readlines()
+	transition_function = {}
+	for line in lines:
+		if "[shape" in line:
+			v = line.split(' ', 2)
+			s1 = (v[0].strip())[1:]
+			s2 = (v[1])[8:len(v[1])-1]
+			if "doublecircle" == s2:
+				accepting_states.add(s1)
+			states.add(s1)
+		elif "[label" in line:
+			if "__start" in line: 
+				continue
+			v = line.split(' ', 2)
+			s1 = (v[0].strip())[1:]
+			s2 = (v[2])[1:v[2].find("[")].strip()
+			label = (v[2])[v[2].find("=")+2: v[2].find("]")-1]
+
+			if s1 in transition_function:
+				l = transition_function[s1]
+				l[label] = s2
+			else:
+				l={}
+				l[label] = s2
+				transition_function[s1] = l
+		elif "__start0 ->" in line:
+			v = (line.split(' ', 2)[2])[1:].strip()
+			initial_state = v[:-1]
+	
+	dfa = SimpleDFA(states,alphabet,initial_state,accepting_states,transition_function)
+	graph = dfa.minimize().to_graphviz()
+	if(typ=="MDL"):
+		graph.save(folder+"/"+str(i)+"/"+typ+"/dfa_minimized/automaton")
+	else:
+		graph.save(folder+"/"+str(i)+"/"+typ+"/dfa_minimized/automaton"+str(j))
+
+if __name__ == "__main__":
+	k = int(sys.argv[1:][0])
+	folder = "generalization/" 
+	for i in range(k):
+		alphabet = "alphabet.txt"
+		automaton = str(i)+"/MDL/automaton"
+		dfaminimized(folder,alphabet,automaton,i,"MDL",0)
+		for j in range(1, 4):
+			automaton = str(i)+"/RPNI/automaton"+str(j)
+			dfaminimized(folder,alphabet,automaton,i,"RPNI",j)
+			automaton = str(i)+"/EDSM/automaton"+str(j)
+			dfaminimized(folder,alphabet,automaton,i,"EDSM",j)
+			automaton = str(i)+"/LSTAR/automaton"+str(j)
+			dfaminimized(folder,alphabet,automaton,i,"LSTAR",j)
