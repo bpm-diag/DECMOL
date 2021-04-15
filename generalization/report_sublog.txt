@@ -1,0 +1,36 @@
+Generalization Log: /Users/alessiofiorenza/Downloads/road.xes
+Generalization k 0
+Number of examples: 24
+Number of positive examples: 11
+Number of negative examples: 10% 0
+Number of negative examples: 20% 1
+Number of negative examples: 30% 2
+
+Generalization k 1
+Number of examples: 24
+Number of positive examples: 11
+Number of negative examples: 10% 0
+Number of negative examples: 20% 1
+Number of negative examples: 30% 2
+
+Generalization k 2
+Number of examples: 24
+Number of positive examples: 11
+Number of negative examples: 10% 0
+Number of negative examples: 20% 1
+Number of negative examples: 30% 2
+
+Generalization k 3
+Number of examples: 24
+Number of positive examples: 11
+Number of negative examples: 10% 0
+Number of negative examples: 20% 1
+Number of negative examples: 30% 2
+
+Generalization k 4
+Number of examples: 24
+Number of positive examples: 11
+Number of negative examples: 10% 0
+Number of negative examples: 20% 1
+Number of negative examples: 30% 2
+

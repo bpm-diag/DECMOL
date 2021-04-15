@@ -1,0 +1,30 @@
+digraph g {
+
+	s0 [shape="circle" label="0"];
+	s1 [shape="doublecircle" label="1"];
+	s2 [shape="circle" label="2"];
+	s0 -> s2 [label="payment"];
+	s0 -> s2 [label="notifyresultappealtooffender"];
+	s1 -> s2 [label="sendfine"];
+	s1 -> s1 [label="insertfinenotification"];
+	s1 -> s0 [label="addpenalty"];
+	s1 -> s1 [label="sendforcreditcollection"];
+	s1 -> s2 [label="appealtojudge"];
+	s1 -> s1 [label="payment"];
+	s1 -> s1 [label="notifyresultappealtooffender"];
+	s2 -> s2 [label="createfine"];
+	s2 -> s2 [label="sendfine"];
+	s2 -> s2 [label="insertfinenotification"];
+	s2 -> s2 [label="addpenalty"];
+	s2 -> s2 [label="sendforcreditcollection"];
+	s2 -> s2 [label="appealtojudge"];
+	s2 -> s1 [label="payment"];
+	s2 -> s2 [label="insertdateappealtoprefecture"];
+	s2 -> s2 [label="sendappealtoprefecture"];
+	s2 -> s1 [label="receiveresultappealfromprefecture"];
+	s2 -> s2 [label="notifyresultappealtooffender"];
+
+__start0 [label="" shape="none" width="0" height="0"];
+__start0 -> s2;
+
+}

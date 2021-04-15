@@ -1,0 +1,8 @@
+File: /Users/alessiofiorenza/Downloads/road.xes
+Alphabet size 11
+Number of examples: 122
+Number of positive examples: 85
+Number of negative examples: 10% 12
+Number of negative examples: 20% 24
+Number of negative examples: 30% 36
+
