@@ -1,7 +1,7 @@
 from pythomata import SimpleDFA
 from graphviz import Digraph
 from itertools import combinations 
-import sys
+import sys, os
 #To get all automaton states : automaton.states 
 #To get the initial state : automaton.initial_state
 #To get the automaton accepting states : automaton.accepting_states
@@ -185,10 +185,10 @@ if __name__ == "__main__":
 	typ = i[3]
 	parameterk = i[4]
 	print(alphabet)
-	if typ == "MDL" or typ == "RPNI" or typ== "EDSM" or typ == "L*":
-		aut = automaton[automaton.rfind("/")+1:]
+	if typ == "MDL" or typ == "RPNI" or typ== "EDSM" or typ == "LSTAR":
+		aut = automaton[automaton.rfind(os.sep)+1:]
 
-		reportfile = "result/precision_report_"+aut
+		reportfile = "result"+os.sep+"precision_report_"+aut
 		report = open(reportfile,"w")
 		report.write("Precision report using "+typ+" algorithm for the discovery task\n")
 		report.close()
@@ -197,7 +197,7 @@ if __name__ == "__main__":
 			K = i
 			precisionALL(automaton, positive, alphabet, length, K, reportfile)
 	elif typ == "DeclareMiner":
-		reportfile = "result/precision_report"+"_"+automaton
+		reportfile = "result"+os.sep+"precision_report"+"_"+automaton
 		report = open(reportfile,"w")
 		report.write("Precision report using "+typ+" algorithm for the discovery task\n")
 		report.close()

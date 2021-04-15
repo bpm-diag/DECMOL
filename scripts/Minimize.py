@@ -1,6 +1,6 @@
 from pythomata import SimpleDFA
 from graphviz import Digraph
-import sys
+import sys, os
 
 def dfaminimized(folder,al,automaton,i,typ,j):
 	#creation alphabet
@@ -47,21 +47,21 @@ def dfaminimized(folder,al,automaton,i,typ,j):
 	dfa = SimpleDFA(states,alphabet,initial_state,accepting_states,transition_function)
 	graph = dfa.minimize().to_graphviz()
 	if(typ=="MDL"):
-		graph.save(folder+"/"+str(i)+"/"+typ+"/dfa_minimized/automaton")
+		graph.save(folder+os.sep+str(i)+os.sep+typ+os.sep+"dfa_minimized"+os.sep+"automaton")
 	else:
-		graph.save(folder+"/"+str(i)+"/"+typ+"/dfa_minimized/automaton"+str(j))
+		graph.save(folder+os.sep+str(i)+os.sep+typ+os.sep+"dfa_minimized"+os.sep+"automaton"+str(j))
 
 if __name__ == "__main__":
 	k = int(sys.argv[1:][0])
-	folder = "generalization/" 
+	folder = "generalization"+os.sep 
 	for i in range(k):
 		alphabet = "alphabet.txt"
-		automaton = str(i)+"/MDL/automaton"
+		automaton = str(i)+os.sep+"MDL"+os.sep+"automaton"
 		dfaminimized(folder,alphabet,automaton,i,"MDL",0)
 		for j in range(1, 4):
-			automaton = str(i)+"/RPNI/automaton"+str(j)
+			automaton = str(i)+os.sep+"RPNI"+os.sep+"automaton"+str(j)
 			dfaminimized(folder,alphabet,automaton,i,"RPNI",j)
-			automaton = str(i)+"/EDSM/automaton"+str(j)
+			automaton = str(i)+os.sep+"EDSM"+os.sep+"automaton"+str(j)
 			dfaminimized(folder,alphabet,automaton,i,"EDSM",j)
-			automaton = str(i)+"/LSTAR/automaton"+str(j)
+			automaton = str(i)+os.sep+"LSTAR"+os.sep+"automaton"+str(j)
 			dfaminimized(folder,alphabet,automaton,i,"LSTAR",j)

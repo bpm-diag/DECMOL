@@ -89,7 +89,7 @@ if __name__ == "__main__":
 	file = sys.argv[1:]
 	if not os.path.exists("result"):
 		os.mkdir("result")  
-	reportfile = "result/report_log.txt"
+	reportfile = "result"+os.sep+"report_log.txt"
 	report = open(reportfile,"w")
 	report.close()
 	build_set(file[0],reportfile)

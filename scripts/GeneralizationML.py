@@ -1,7 +1,7 @@
 import os, sys, random
 
 def build_sets(file,reportfile,num):
-	report = open("generalization/"+reportfile,"a")
+	report = open("generalization"+os.sep+reportfile,"a")
 	report.write("Generalization Log: "+file+"\n")
 	
 	logp = open("positive.txt","r")
@@ -23,8 +23,8 @@ def build_sets(file,reportfile,num):
 	yn = 0
 	for i in range(k):
 
-		if not os.path.exists("generalization/"+str(i)):
-			os.mkdir("generalization/"+str(i))
+		if not os.path.exists("generalization"+os.sep+str(i)):
+			os.mkdir("generalization"+os.sep+str(i))
 
 		pos = (dimp*70)//100
 		neg3 = (dimn*30)//100
@@ -35,10 +35,10 @@ def build_sets(file,reportfile,num):
 		randp = random.sample(range(yp,yp+dimp),pos)
 		randn = random.sample(range(yn,yn+dimn),neg3)
 
-		fp = open("generalization/"+str(i)+"/positive.txt", "w")
-		fn1 = open("generalization/"+str(i)+"/negative1.txt","w")
-		fn2 = open("generalization/"+str(i)+"/negative2.txt","w")
-		fn3 = open("generalization/"+str(i)+"/negative3.txt","w")
+		fp = open("generalization"+os.sep+str(i)+os.sep+"positive.txt", "w")
+		fn1 = open("generalization"+os.sep+str(i)+os.sep+"negative1.txt","w")
+		fn2 = open("generalization"+os.sep+str(i)+os.sep+"negative2.txt","w")
+		fn3 = open("generalization"+os.sep+str(i)+os.sep+"negative3.txt","w")
 	
 
 		for j in range(pos):
@@ -77,7 +77,7 @@ if __name__ == "__main__":
 	if not os.path.exists("generalization"):
 		os.mkdir("generalization")  
 	
-	report = open("generalization/"+reportfile,"w")
+	report = open("generalization"+os.sep+reportfile,"w")
 	report.close()
 	build_sets(file[0],reportfile, int(K))
 
