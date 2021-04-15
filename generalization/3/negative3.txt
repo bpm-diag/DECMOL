@@ -1,2 +1,0 @@
-createfine sendfine insertfinenotification insertdateappealtoprefecture addpenalty receiveresultappealfromprefecture notifyresultappealtooffender appealtojudge 
-createfine sendfine insertfinenotification addpenalty insertdateappealtoprefecture sendappealtoprefecture 

@@ -1,2 +1,0 @@
-createfine sendfine insertfinenotification payment addpenalty sendforcreditcollection 
-createfine sendfine insertfinenotification insertdateappealtoprefecture sendappealtoprefecture receiveresultappealfromprefecture addpenalty payment payment 
