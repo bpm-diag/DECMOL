@@ -1,4 +1,4 @@
-import sys, subprocess, getopt
+import sys, subprocess, getopt, os
 
 #subprocess.call(" python script2.py 1", shell=True)
 #subprocess.call(['java', '-jar', 'rum-0.5.12.jar'])
@@ -53,7 +53,7 @@ def options(argv):
     elif(argv[0] == '-e'):
         #launch python script for preprocessing
         event = argv[1]
-        subprocess.call(["python3","scripts/DataProcessing.py", event])
+        subprocess.call(["python3","scripts"+os.sep+"DataProcessing.py", event])
         
     elif(argv[0] == '-a'):
         #run java.jar for automaton creation
@@ -63,7 +63,7 @@ def options(argv):
         negative = ""
         if(len(argv) == 5):
             negative = argv[4]
-        subprocess.call(["java", "-jar", "scripts/ModelLearning.jar", algorithm, alphabet, positive, negative])
+        subprocess.call(["java", "-jar", "scripts"+os.sep+"ModelLearning.jar", algorithm, alphabet, positive, negative])
 
     elif(argv[0] == '-p'):
         #run precision.py
@@ -72,24 +72,24 @@ def options(argv):
         positive = argv[3]
         alphabet = argv[4]
         k = argv[5]
-        subprocess.call(["python3","scripts/Precision.py", automaton, positive, alphabet, typ, k])
+        subprocess.call(["python3","scripts"+os.sep+"Precision.py", automaton, positive, alphabet, typ, k])
 
     elif(argv[0] == '-g'):
         log = argv[1]
         k = argv[2]
-        subprocess.call(["python3","scripts/GeneralizationML.py", log, k])
+        subprocess.call(["python3","scripts"+os.sep+"GeneralizationML.py", log, k])
         for i in range(0,int(k)):
-            subprocess.call(["java", "-jar", "scripts/ModelLearning.jar", "MDL", "alphabet.txt", "generalization/"+str(i)+"/positive.txt",""])
-            subprocess.call(["java", "-jar", "scripts/ModelLearning.jar", "RPNI", "alphabet.txt", "generalization/"+str(i)+"/positive.txt","generalization/"+str(i)+"/negative1.txt"])
-            subprocess.call(["java", "-jar", "scripts/ModelLearning.jar", "RPNI", "alphabet.txt", "generalization/"+str(i)+"/positive.txt","generalization/"+str(i)+"/negative2.txt"])
-            subprocess.call(["java", "-jar", "scripts/ModelLearning.jar", "RPNI", "alphabet.txt", "generalization/"+str(i)+"/positive.txt","generalization/"+str(i)+"/negative3.txt"])
-            subprocess.call(["java", "-jar", "scripts/ModelLearning.jar", "EDSM", "alphabet.txt", "generalization/"+str(i)+"/positive.txt","generalization/"+str(i)+"/negative1.txt"])
-            subprocess.call(["java", "-jar", "scripts/ModelLearning.jar", "EDSM", "alphabet.txt", "generalization/"+str(i)+"/positive.txt","generalization/"+str(i)+"/negative2.txt"])
-            subprocess.call(["java", "-jar", "scripts/ModelLearning.jar", "EDSM", "alphabet.txt", "generalization/"+str(i)+"/positive.txt","generalization/"+str(i)+"/negative3.txt"])
-            subprocess.call(["java", "-jar", "scripts/ModelLearning.jar", "LSTAR", "alphabet.txt", "generalization/"+str(i)+"/positive.txt","generalization/"+str(i)+"/negative1.txt"])
-            subprocess.call(["java", "-jar", "scripts/ModelLearning.jar", "LSTAR", "alphabet.txt", "generalization/"+str(i)+"/positive.txt","generalization/"+str(i)+"/negative2.txt"])
-            subprocess.call(["java", "-jar", "scripts/ModelLearning.jar", "LSTAR", "alphabet.txt", "generalization/"+str(i)+"/positive.txt","generalization/"+str(i)+"/negative3.txt"])
-        subprocess.call(["python3","scripts/Minimize.py", k])
+            subprocess.call(["java", "-jar", "scripts"+os.sep+"ModelLearning.jar", "MDL", "alphabet.txt", "generalization"+os.sep+str(i)+os.sep+"positive.txt",""])
+            subprocess.call(["java", "-jar", "scripts"+os.sep+"ModelLearning.jar", "RPNI", "alphabet.txt", "generalization"+os.sep+str(i)+os.sep+"positive.txt","generalization"+os.sep+str(i)+os.sep+"negative1.txt"])
+            subprocess.call(["java", "-jar", "scripts"+os.sep+"ModelLearning.jar", "RPNI", "alphabet.txt", "generalization"+os.sep+str(i)+os.sep+"positive.txt","generalization"+os.sep+str(i)+os.sep+"negative2.txt"])
+            subprocess.call(["java", "-jar", "scripts"+os.sep+"ModelLearning.jar", "RPNI", "alphabet.txt", "generalization"+os.sep+str(i)+os.sep+"positive.txt","generalization"+os.sep+str(i)+os.sep+"negative3.txt"])
+            subprocess.call(["java", "-jar", "scripts"+os.sep+"ModelLearning.jar", "EDSM", "alphabet.txt", "generalization"+os.sep+str(i)+os.sep+"positive.txt","generalization"+os.sep+str(i)+os.sep+"negative1.txt"])
+            subprocess.call(["java", "-jar", "scripts"+os.sep+"ModelLearning.jar", "EDSM", "alphabet.txt", "generalization"+os.sep+str(i)+os.sep+"positive.txt","generalization"+os.sep+str(i)+os.sep+"negative2.txt"])
+            subprocess.call(["java", "-jar", "scripts"+os.sep+"ModelLearning.jar", "EDSM", "alphabet.txt", "generalization"+os.sep+str(i)+os.sep+"positive.txt","generalization"+os.sep+str(i)+os.sep+"negative3.txt"])
+            subprocess.call(["java", "-jar", "scripts"+os.sep+"ModelLearning.jar", "LSTAR", "alphabet.txt", "generalization"+os.sep+str(i)+os.sep+"positive.txt","generalization"+os.sep+str(i)+os.sep+"negative1.txt"])
+            subprocess.call(["java", "-jar", "scripts"+os.sep+"ModelLearning.jar", "LSTAR", "alphabet.txt", "generalization"+os.sep+str(i)+os.sep+"positive.txt","generalization"+os.sep+str(i)+os.sep+"negative2.txt"])
+            subprocess.call(["java", "-jar", "scripts"+os.sep+"ModelLearning.jar", "LSTAR", "alphabet.txt", "generalization"+os.sep+str(i)+os.sep+"positive.txt","generalization"+os.sep+str(i)+os.sep+"negative3.txt"])
+        subprocess.call(["python3","scripts"+os.sep+"Minimize.py", k])
         
     else:
         print("Invalid Option")
