@@ -7,7 +7,7 @@ def getAlphabet(log, reportfile):
 	c = 0 
 	activities = attributes_filter.get_attribute_values(log, "concept:name")
 
-	f = open("alphabet.txt", "w")
+	f = open("preprocessing"+os.sep+"alphabet.txt", "w")
 	report = open(reportfile,"a")
 
 	for i in activities:
@@ -26,10 +26,10 @@ def getAlphabet(log, reportfile):
 	return
 	
 def computeRandom(log,reportfile):
-	fp = open("positive.txt", "w")
-	fn1 = open("negative1.txt","w")
-	fn2 = open("negative2.txt","w")
-	fn3 = open("negative3.txt","w")
+	fp = open("preprocessing"+os.sep+"positive.txt", "w")
+	fn1 = open("preprocessing"+os.sep+"negative1.txt","w")
+	fn2 = open("preprocessing"+os.sep+"negative2.txt","w")
+	fn3 = open("preprocessing"+os.sep+"negative3.txt","w")
 
 	report = open(reportfile,"a")
 
@@ -89,6 +89,8 @@ if __name__ == "__main__":
 	file = sys.argv[1:]
 	if not os.path.exists("result"):
 		os.mkdir("result")  
+	if not os.path.exists("preprocessing"):
+		os.mkdir("preprocessing")  
 	reportfile = "result"+os.sep+"report_log.txt"
 	report = open(reportfile,"w")
 	report.close()

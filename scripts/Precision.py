@@ -184,7 +184,6 @@ if __name__ == "__main__":
 	alphabet = i[2]
 	typ = i[3]
 	parameterk = i[4]
-	print(alphabet)
 	if typ == "MDL" or typ == "RPNI" or typ== "EDSM" or typ == "LSTAR":
 		aut = automaton[automaton.rfind(os.sep)+1:]
 
@@ -196,6 +195,9 @@ if __name__ == "__main__":
 			length = i+1
 			K = i
 			precisionALL(automaton, positive, alphabet, length, K, reportfile)
+		
+		print("\nPrecision report written in the result folder")
+
 	elif typ == "DeclareMiner":
 		reportfile = "result"+os.sep+"precision_report"+"_"+automaton
 		report = open(reportfile,"w")
@@ -206,5 +208,6 @@ if __name__ == "__main__":
 			K = i
 			precisionDOT(automaton, positive, length, K, reportfile)
 
+		print("\nPrecision report written in the result folder")
 
 

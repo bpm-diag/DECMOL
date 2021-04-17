@@ -1,11 +1,11 @@
 import os, sys, random
 
-def build_sets(file,reportfile,num):
+def build_sets(positive, negative, reportfile, num):
 	report = open("generalization"+os.sep+reportfile,"a")
-	report.write("Generalization Log: "+file+"\n")
+	report.write("Generalization \n")
 	
-	logp = open("positive.txt","r")
-	logn = open("negative3.txt","r")
+	logp = open(positive,"r")
+	logn = open(negative,"r")
 
 	kp = []
 	for line in logp:
@@ -72,13 +72,15 @@ def build_sets(file,reportfile,num):
 if __name__ == "__main__":
 	#creation of k different sub-logs for model learning. 
 	file = sys.argv[1:]
-	K = file[1]
+	positive = file[0]
+	negative = file[1]
+	K = file[2]
 	reportfile = "report_sublog.txt"
 	if not os.path.exists("generalization"):
 		os.mkdir("generalization")  
 	
 	report = open("generalization"+os.sep+reportfile,"w")
 	report.close()
-	build_sets(file[0],reportfile, int(K))
+	build_sets(positive, negative ,reportfile, int(K))
 
 	

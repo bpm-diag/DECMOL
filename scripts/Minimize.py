@@ -55,7 +55,7 @@ if __name__ == "__main__":
 	k = int(sys.argv[1:][0])
 	folder = "generalization"+os.sep 
 	for i in range(k):
-		alphabet = "alphabet.txt"
+		alphabet = "preprocessing"+os.sep+"alphabet.txt"
 		automaton = str(i)+os.sep+"MDL"+os.sep+"automaton"
 		dfaminimized(folder,alphabet,automaton,i,"MDL",0)
 		for j in range(1, 4):
