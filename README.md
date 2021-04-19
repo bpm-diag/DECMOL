@@ -19,3 +19,17 @@ The tool provides different features. Using the following command is possible to
 ```python
 python3 main.py -h
 ```
+## How to Run 
+1. Pre-Processing: python3 main.py -e <"event-log.xes">
+* input:
+	* <"event-log.xes">: 
+* output:
+	* <"alphabet.txt">: 
+	* <"positive.txt">: 
+	* <"negative1.txt">: 
+	* <"negative2.txt">: 
+	* <"negative3.txt">: 
+2. Build Automaton: python3 main.py -a <RPNI | EDSM | MDL | LSTAR> <alphabet.txt> <positive.txt> <negative.txt>
+* input: 
+	* <RPNI | EDSM | MDL | LSTAR>
+	* <alphabet.txt>
