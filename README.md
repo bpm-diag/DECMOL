@@ -46,10 +46,10 @@ python3 main.py -h
 	* <K>: it identifies the length of the substrings that you want to take into account to describe the behavior of the log and automaton.
 * _output_:
 	* <precision.txt>: in this file is stored the value of the precision for the behaviors that have a length from 2 to k.
-4. **Compute Generalization** python3 main.py -g <positive.txt> <negative | negative2.txt | negative3.txt> <N> 
+4. **Compute Generalization** python3 main.py -g <positive.txt> <negative | negative2.txt | negative3.txt> <\N> 
 * _input_:
 	* <positive.txt>
 	* <negative1.txt | negative2.txt | negative3.txt>
-	* <N>: it is the number of sublogs that you want to use for the calculation of the generalization
+	* <\N>: it is the number of sublogs that you want to use for the calculation of the generalization
 * _output_:
 	* <generalization.txt>: in this file is stored the value of the generalization, in particular, you have three different values (one for each automaton discovered using the different amount of negative traces: 10%, 20%, and 30%)
