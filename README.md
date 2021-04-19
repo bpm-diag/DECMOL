@@ -20,16 +20,36 @@ The tool provides different features. Using the following command is possible to
 python3 main.py -h
 ```
 ## How to Run 
-1. Pre-Processing: python3 main.py -e <event-log.xes>
+1. **Pre-Processing:** python3 main.py -e <event-log.xes>
 * input:
-	* <event-log.xes>: 
+	* <event-log.xes>
 * output:
 	* <alphabet.txt>: 
 	* <positive.txt>: 
 	* <negative1.txt>: 
 	* <negative2.txt>: 
 	* <negative3.txt>: 
-2. Build Automaton: python3 main.py -a <RPNI | EDSM | MDL | LSTAR> <alphabet.txt> <positive.txt> <negative.txt>
+2. **Build Automaton:** python3 main.py -a <RPNI | EDSM | MDL | LSTAR> <alphabet.txt> <positive.txt> <negative.txt>
 * input: 
 	* <RPNI | EDSM | MDL | LSTAR>
 	* <alphabet.txt>
+	* <positive.txt>
+	* <negative.txt>
+* output: 
+	* <automaton.txt>:
+	* <time.txt>:
+3. **Compute Precision:** python3 main.py -p <RPNI | EDSM | MDL | LSTAR | DeclareMiner> <automaton.txt | automaton.dot> <positive.txt> <alphabet.txt> <K>
+* input:
+	* <RPNI | EDSM | MDL | LSTAR> 
+	* <positive.txt>
+	* <alphabet.txt>
+	* <K>:
+* output:
+	* <precision.txt>
+4. **Compute Generalization** python3 main.py -g <positive.txt> <negative> <N>
+* input:
+	* <positive.txt>
+	* <negative.txt>
+	* <N>
+* output:
+	* <generalization.txt>
