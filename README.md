@@ -24,32 +24,32 @@ python3 main.py -h
 * input:
 	* <event-log.xes>
 * output:
-	* <alphabet.txt>: 
-	* <positive.txt>: 
-	* <negative1.txt>: 
-	* <negative2.txt>: 
-	* <negative3.txt>: 
+	* <alphabet.txt>: it stores in each line the alphabet symbols that come from the event log. 
+	* <positive.txt>: it collects 70% of the traces in the event log 
+	* <negative1.txt>: it represents the 10% of the traces in the event log 
+	* <negative2.txt>: it stores 20% of the traces in the event log
+	* <negative3.txt>: it memorizes 30% of the traces in the event log
 2. **Build Automaton:** python3 main.py -a <RPNI | EDSM | MDL | LSTAR> <alphabet.txt> <positive.txt> <negative.txt>
 * input: 
 	* <RPNI | EDSM | MDL | LSTAR>
-	* <alphabet.txt>
+	* <alphabet.txt> 
 	* <positive.txt>
 	* <negative.txt>
 * output: 
-	* <automaton.txt>:
-	* <time.txt>:
+	* <automaton.txt>: it represents the automaton discovered through a model learning algorithm 
+	* <time.txt>: in this file is memorized the time needed by the chosen algorithm to compute the automaton
 3. **Compute Precision:** python3 main.py -p <RPNI | EDSM | MDL | LSTAR | DeclareMiner> <automaton.txt | automaton.dot> <positive.txt> <alphabet.txt> <K>
 * input:
 	* <RPNI | EDSM | MDL | LSTAR> 
 	* <positive.txt>
 	* <alphabet.txt>
-	* <K>:
+	* <K>: it identifies the length of the substrings that you want to take into account to describe the behavior of the log and automaton.
 * output:
-	* <precision.txt>
+	* <precision.txt>: in this file is stored the value of the precision for the behaviors that have a length from 2 to K.
 4. **Compute Generalization** python3 main.py -g <positive.txt> <negative> <N>
 * input:
 	* <positive.txt>
-	* <negative.txt>
-	* <N>
+	* <negative1.txt | negative2.txt | negative3.txt>
+	* <N>: it is the number of sublogs that you want to use for the calculation of the generalization
 * output:
-	* <generalization.txt>
+	* <generalization.txt>: in this file is stored the value of the generalization, in particular, you have three different values (one for each automaton discovered using the different amount of negative traces: 10%, 20%, and 30%)
