@@ -72,6 +72,7 @@ def options(argv):
         alphabet = argv[4]
         k = argv[5]
         subprocess.call(["python3","scripts"+os.sep+"Precision.py", automaton, positive, alphabet, typ, k])
+        subprocess.call(["python3","scripts"+os.sep+"Hungarian.py", automaton, positive, alphabet, typ, k])
 
     elif(argv[0] == '-g'):
         if(len(argv)==2):
