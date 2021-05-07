@@ -115,6 +115,8 @@ def precisionHung(automaton, positive, alphabet, length, K, reportfile):
 			for j in logset:
 				#matrix[row].append(distance(i,j))
 				report.write(str(distance(i,j))+" ")
+				print("I "+i)
+				print("J "+j)
 			#matrix.append([])
 			report.write("\n")
 			row+=1

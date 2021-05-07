@@ -71,6 +71,8 @@ def options(argv):
         positive = argv[3]
         alphabet = argv[4]
         k = argv[5]
+        if not os.path.exists("result"):
+            os.mkdir("result")  
         subprocess.call(["python3","scripts"+os.sep+"Precision.py", automaton, positive, alphabet, typ, k])
         subprocess.call(["python3","scripts"+os.sep+"Hungarian.py", automaton, positive, alphabet, typ, k])
 
