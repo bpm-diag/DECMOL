@@ -22,7 +22,8 @@ def myDFS(trans_dict,start,length,paths,pathset,path=[],st=""):
 def precisionHung(automaton, positive, alphabet, length, K, reportfile):
 	def precision(automaton, positive, alph, length, K, reportfile):
 		reportf = open(reportfile,"a")
-
+		if not os.path.exists("preprocessing"):
+			os.mkdir("preprocessing")  
 		report = open("preprocessing"+os.sep+"matrix.txt","w")
 		reportf.write("Precision with K = "+str(K)+"\n")
 		reportf.close()
