@@ -121,9 +121,8 @@ def precisionDOT(automaton, positive, length, K, reportfile):
 		report = open(reportfile,"a")
 		report.write("Precision automaton DeclareMiner:  with K = "+str(K)+"\n")
 
-		states = set()
-		initial_state = "";
-		accepting_states = set()
+		
+		
 		fp = open(automaton,"r")
 		lines = fp.readlines()
 		transition_function = {}
@@ -201,7 +200,7 @@ if __name__ == "__main__":
 	elif typ == "DeclareMiner":
 		aut = automaton[automaton.rfind(os.sep)+1:]
 
-		reportfile = "result"+os.sep+"precision_report"+"_"+aut+"_"+typ+".txt"
+		reportfile = "result"+os.sep+"precision_report_"+aut+"_"+typ+".txt"
 		report = open(reportfile,"w")
 		report.write("Precision report using "+typ+" algorithm for the discovery task\n")
 		report.close()

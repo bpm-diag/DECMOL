@@ -53,15 +53,16 @@ def dfaminimized(folder,al,automaton,i,typ,j):
 
 if __name__ == "__main__":
 	k = int(sys.argv[1:][0])
-	folder = "generalization"+os.sep 
-	for i in range(k):
-		alphabet = "preprocessing"+os.sep+"alphabet.txt"
-		automaton = str(i)+os.sep+"MDL"+os.sep+"automaton"
-		dfaminimized(folder,alphabet,automaton,i,"MDL",0)
-		for j in range(1, 4):
-			automaton = str(i)+os.sep+"RPNI"+os.sep+"automaton"+str(j)
-			dfaminimized(folder,alphabet,automaton,i,"RPNI",j)
-			automaton = str(i)+os.sep+"EDSM"+os.sep+"automaton"+str(j)
-			dfaminimized(folder,alphabet,automaton,i,"EDSM",j)
-			automaton = str(i)+os.sep+"LSTAR"+os.sep+"automaton"+str(j)
-			dfaminimized(folder,alphabet,automaton,i,"LSTAR",j)
+	alg = sys.argv[1:][1]
+	alphabet = sys.argv[1:][2]
+	folder = "generalization"+os.sep
+	if alg == "MDL":
+		for i in range(k):
+			automaton = str(i)+os.sep+"MDL"+os.sep+"automaton"
+			dfaminimized(folder,alphabet,automaton,i,"MDL",0)
+	else:
+		for i in range(k):
+			for j in range(1, 4):
+				automaton = str(i)+os.sep+alg+os.sep+"automaton"+str(j)
+				dfaminimized(folder,alphabet,automaton,i,alg,j)
+			

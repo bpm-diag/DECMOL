@@ -1,4 +1,4 @@
-import os, sys, random
+import os, sys, random, shutil
 
 def build_sets(positive, negative, reportfile, num):
 	report = open("generalization"+os.sep+reportfile,"a")
@@ -77,6 +77,9 @@ if __name__ == "__main__":
 	K = file[2]
 	reportfile = "report_sublog.txt"
 	if not os.path.exists("generalization"):
+		os.mkdir("generalization")
+	elif os.path.exists("generalization"):
+		shutil.rmtree("generalization")
 		os.mkdir("generalization")  
 	
 	report = open("generalization"+os.sep+reportfile,"w")

@@ -1,7 +1,7 @@
 import pm4py
 from pm4py.algo.filtering.log.attributes import attributes_filter
 import random
-import os, sys
+import os, sys,shutil
 
 def getAlphabet(log, reportfile): 
 	c = 0 
@@ -25,7 +25,7 @@ def getAlphabet(log, reportfile):
 	report.close()
 	return
 	
-def computeRandom(log,reportfile):
+def computeRandom(log, reportfile):
 	fp = open("preprocessing"+os.sep+"positive.txt", "w")
 	fn1 = open("preprocessing"+os.sep+"negative1.txt","w")
 	fn2 = open("preprocessing"+os.sep+"negative2.txt","w")
@@ -88,9 +88,17 @@ def build_set(file, reportfile):
 if __name__ == "__main__":
 	file = sys.argv[1:]
 	if not os.path.exists("result"):
-		os.mkdir("result")  
+		os.mkdir("result")
+	elif os.path.exists("result"):
+		pathname = os.path.dirname(sys.argv[0])
+		shutil.rmtree("result")
+		os.mkdir("result")
 	if not os.path.exists("preprocessing"):
-		os.mkdir("preprocessing")  
+		os.mkdir("preprocessing") 
+	elif os.path.exists("preprocessing"):
+		pathname = os.path.dirname(sys.argv[0])
+		shutil.rmtree("preprocessing")
+		os.mkdir("preprocessing")
 	reportfile = "result"+os.sep+"report_log.txt"
 	report = open(reportfile,"w")
 	report.close()

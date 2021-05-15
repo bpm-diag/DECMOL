@@ -20,15 +20,19 @@ The tool provides different features. Using the following command is possible to
 python3 main.py -h
 ```
 ## How to Run 
-1. **Pre-Processing:** python3 main.py -e <event-log.xes>
+1. **Pre-Processing:** python3 main.py -e <RPNI | EDSM | MDL | LSTAR | DeclareMiner> <EventLog.xes>
 * _input_:
-	* <event-log.xes>
+	* <RPNI | EDSM | MDL | LSTAR | DeclareMiner>
+	* <EventLog.xes>
 * _output_:
 	* <alphabet.txt>: it stores in each line the alphabet symbols that come from the event log. 
 	* <positive.txt>: it collects 70% of the traces in the event log 
 	* <negative1.txt>: it represents the 10% of the traces in the event log 
 	* <negative2.txt>: it stores 20% of the traces in the event log
 	* <negative3.txt>: it memorizes 30% of the traces in the event log
+Whether MDL or DeclareMiner is selected as algorithm the output is:
+	* <alphabet.txt>: it stores in each line the alphabet symbols that come from the event log. 
+	* <positive.txt>: it collects 100% of the traces in the event log 
 2. **Build Automaton:** python3 main.py -a <RPNI | EDSM | MDL | LSTAR> <alphabet.txt> <positive.txt> <negative.txt>
 * _input_: 
 	* <RPNI | EDSM | MDL | LSTAR>
@@ -46,10 +50,28 @@ python3 main.py -h
 	* &lt;K&gt; : it identifies the length of the substrings that you want to take into account to describe the behavior of the log and automaton.
 * _output_:
 	* <precision.txt>: in this file is stored the value of the precision for the behaviors that have a length from 2 to k.
-4. **Compute Generalization** python3 main.py -g <positive.txt> <negative | negative2.txt | negative3.txt> &lt;N&gt; 
+	* <precision_with_Hungarian_Algorithm.txt>: in this file is stored the value of the precision for the behaviors that have a length from 2 to k using Hungarian Algorithm.
+4. **Compute Generalization** python3 main.py -g <RPNI | EDSM | MDL | LSTAR> <positive.txt> <negative.txt> &lt;N&gt; &lt;K&gt; 
 * _input_:
+	* <RPNI | EDSM | MDL | LSTAR> 
 	* <positive.txt>
-	* <negative1.txt | negative2.txt | negative3.txt>
-	* &lt;N&gt;: it is the number of sublogs that you want to use for the calculation of the generalization
+	* <negative1.txt | negative2.txt | negative3.txt> it is possible to select the negative file that you want.
+	* &lt;N&gt; : it is the number of sublogs that you want to use for the calculation of the generalization
+	* &lt;K&gt; : it represents the length of the behaviours that will be used for the calculation of the fitness through the Hungarian Algorithm.
+Whether MDL is selected like algorithm the negative file does not have to be specified. Moreover is possible to select just the algorithm, N and K parameters, and the generalization is computed considering the positive.txt and negative3.txt (if it is needed) files inside preprocessing folder.
 * _output_:
-	* <generalization.txt>: in this file is stored the value of the generalization, in particular, you have three different values (one for each automaton discovered using the different amount of negative traces: 10%, 20%, and 30%)
+	* <generalization.txt>: in this file is stored the value of the generalization. In particular, it will contain a value for each length of the behaviours you want to consider and, where possible, also based on the number of negative traces for each sublog. 
+5. **Compute Generalization for DeclareMiner algorithm** python3 main.py -d <positive.txt> &lt;N&gt; &lt;K&gt; <automaton1.dot> ... <automatonN> 
+* _input_:
+	*<positive.txt>
+	*&lt;N&gt; : it is the number of sublogs that you want to use for the calculation of the generalization
+	*&lt;K&gt; : it represents the length of the behaviours that will be used for the calculation of the fitness through the Hungarian Algorithm.
+	*<automatoni.dot> : it represents the automaton discovered by the DeclareMiner algorithm for the i-th sublog
+6. **All automated functionality** python3 main -c <RPNI | EDSM | MDL | LSTAR> &lt;K1&gt; &lt;N&gt; &lt;K2&gt; <EventLog> 
+* _input_:
+	* <RPNI | EDSM | MDL | LSTAR> 
+	* &lt;K1&gt; : it identifies the length of the substrings that you want to take into account to describe the behavior of the log and automaton for the precision calculation.
+	* &lt;N&gt; : it is the number of sublogs that you want to use for the calculation of the generalization
+	* &lt;K2&gt; : it represents the length of the behaviours that will be used for the calculation of the fitness through the Hungarian Algorithm.
+Whether it is chosen to use one of the algorithms that uses the negative traces is selected the file with 30% of negative traces
+ 
