@@ -153,17 +153,15 @@ def precisionHung(automaton, positive, alphabet, length, K, reportfile):
 
 	precision(automaton, positive, alphabet, length, K, reportfile)
 
-def precisionDOT(automaton, positive, length, K, reportfile):
-	def prec(automaton, positive, length, K, reportfile):
+def precisionDOT(automaton, alph, positive, length, K, reportfile):
+	def prec(automaton, alph, positive, length, K, reportfile):
 		reportf = open(reportfile,"a")
 		reportf.write("Precision automaton DeclareMiner:  with K = "+str(K)+"\n")
 		reportf.close()
-
+		if not os.path.exists("preprocessing"):
+			os.mkdir("preprocessing")  
 		report = open("preprocessing"+os.sep+"matrix.txt","w")
 
-		states = set()
-		initial_state = "";
-		accepting_states = set()
 		fp = open(automaton,"r")
 		lines = fp.readlines()
 		transition_function = {}
@@ -212,6 +210,23 @@ def precisionDOT(automaton, positive, length, K, reportfile):
 		report.write(str(len(pathset))+"\n")
 		report.write(str(len(logset))+"\n")
 
+		alphabet = set()
+		fp = open(alph,"r")
+		lines = fp.readlines()
+		for line in lines:
+			alphabet.add(line.strip())
+
+		mapping = dict()
+		if len(alphabet) > 52:
+			print("Error, alphabet too big.")
+		else:
+			x = 97
+			for i in alphabet:
+				mapping[i] = chr(x)
+				x+=1
+				if(x==123):
+					x=65
+
 		#applying the mapping with hash map
 		abcautomaton = set()
 		for k in pathset:
@@ -241,7 +256,7 @@ def precisionDOT(automaton, positive, length, K, reportfile):
 		report.close()
 		subprocess.call(["java", "-jar", "scripts"+os.sep+"Hungarian.jar", "preprocessing"+os.sep+"matrix.txt", reportfile])
 
-	prec(automaton, positive, length, K, reportfile)	
+	prec(automaton, alph, positive, length, K, reportfile)	
 
 if __name__ == "__main__":
 	
@@ -265,7 +280,7 @@ if __name__ == "__main__":
 		
 		print("\nPrecision report written in the result folder")
 
-	elif typ == "DeclareMiner":
+	elif typ == "DECLAREMINER":
 		aut = automaton[automaton.rfind(os.sep)+1:]
 
 		reportfile = "result"+os.sep+"precision_report_"+aut+"_with_Hungarian_Algorithm.txt"
@@ -275,7 +290,7 @@ if __name__ == "__main__":
 		for i in range(2, int(parameterk)+1):
 			length = i+1
 			K = i
-			precisionDOT(automaton, positive, length, K, reportfile)
+			precisionDOT(automaton, alphabet, positive, length, K, reportfile)
 
 		print("\nPrecision report written in the result folder")
 

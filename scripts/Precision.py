@@ -197,7 +197,7 @@ if __name__ == "__main__":
 		
 		print("\nPrecision report written in the result folder")
 
-	elif typ == "DeclareMiner":
+	elif typ == "DECLAREMINER":
 		aut = automaton[automaton.rfind(os.sep)+1:]
 
 		reportfile = "result"+os.sep+"precision_report_"+aut+"_"+typ+".txt"
