@@ -38,7 +38,7 @@ def options(argv):
         help()
         sys.exit(2)
 
-    elif argv[0].lower() == '-d' and (len(argv) < 7):
+    elif argv[0].lower() == '-d' and (len(argv) < 6):
         print("Error! Some input is missing. Take into account that is needed at least two automata for executing this functionality")
         sys.exit(2)
 
@@ -78,7 +78,7 @@ def options(argv):
         negative = ""
         if len(argv) == 5:
             negative = argv[4]
-        subprocess.call(["java", "-jar", "scripts"+os.sep+"ModelLearning.jar", algorithm, alphabet, positive, negative])
+        subprocess.call(["java", "-Xms1g", "-Xmx40g","-jar", "scripts"+os.sep+"ModelLearning.jar", algorithm, alphabet, positive, negative])
 
     elif argv[0].lower() == '-p':
         #run precision.py
@@ -110,9 +110,9 @@ def options(argv):
                 subprocess.call(["python3","scripts"+os.sep+"GeneralizationML.py","preprocessing"+os.sep+"positive.txt", "preprocessing"+os.sep+"negative3.txt", k])
                 subprocess.call(["python3","scripts"+os.sep+"xes-master"+os.sep+"Buildxes.py",k, os.path.abspath(__file__)[:-8]])
                 for i in range(0,int(k)):
-                    subprocess.call(["java", "-jar", "scripts"+os.sep+"ModelLearning.jar", alg, "preprocessing"+os.sep+"alphabet.txt", "generalization"+os.sep+str(i)+os.sep+"positive.txt","generalization"+os.sep+str(i)+os.sep+"negative1.txt"])
-                    subprocess.call(["java", "-jar", "scripts"+os.sep+"ModelLearning.jar", alg, "preprocessing"+os.sep+"alphabet.txt", "generalization"+os.sep+str(i)+os.sep+"positive.txt","generalization"+os.sep+str(i)+os.sep+"negative2.txt"])
-                    subprocess.call(["java", "-jar", "scripts"+os.sep+"ModelLearning.jar", alg, "preprocessing"+os.sep+"alphabet.txt", "generalization"+os.sep+str(i)+os.sep+"positive.txt","generalization"+os.sep+str(i)+os.sep+"negative3.txt"])
+                    subprocess.call(["java", "-Xms1g", "-Xmx40g","-jar", "scripts"+os.sep+"ModelLearning.jar", alg, "preprocessing"+os.sep+"alphabet.txt", "generalization"+os.sep+str(i)+os.sep+"positive.txt","generalization"+os.sep+str(i)+os.sep+"negative1.txt"])
+                    subprocess.call(["java", "-Xms1g", "-Xmx40g","-jar", "scripts"+os.sep+"ModelLearning.jar", alg, "preprocessing"+os.sep+"alphabet.txt", "generalization"+os.sep+str(i)+os.sep+"positive.txt","generalization"+os.sep+str(i)+os.sep+"negative2.txt"])
+                    subprocess.call(["java", "-Xms1g", "-Xmx40g","-jar", "scripts"+os.sep+"ModelLearning.jar", alg, "preprocessing"+os.sep+"alphabet.txt", "generalization"+os.sep+str(i)+os.sep+"positive.txt","generalization"+os.sep+str(i)+os.sep+"negative3.txt"])
                 #subprocess.call(["python3","scripts"+os.sep+"Minimize.py", k, alg, "preprocessing"+os.sep+"alphabet.txt"])
                 subprocess.call(["python3","scripts"+os.sep+"Fitness.py", "preprocessing"+os.sep+"positive.txt", "preprocessing"+os.sep+"alphabet.txt", alg, k, behaviors])
 
@@ -128,9 +128,9 @@ def options(argv):
                 subprocess.call(["python3","scripts"+os.sep+"xes-master"+os.sep+"Buildxes.py",k, os.path.abspath(__file__)[:-8]])
 
                 for i in range(0,int(k)):
-                    subprocess.call(["java", "-jar", "scripts"+os.sep+"ModelLearning.jar", alg, "generalization"+os.sep+str(i)+os.sep+"alphabet.txt", "generalization"+os.sep+str(i)+os.sep+"positive.txt","generalization"+os.sep+str(i)+os.sep+"negative1.txt"])
-                    subprocess.call(["java", "-jar", "scripts"+os.sep+"ModelLearning.jar", alg, "generalization"+os.sep+str(i)+os.sep+"alphabet.txt", "generalization"+os.sep+str(i)+os.sep+"positive.txt","generalization"+os.sep+str(i)+os.sep+"negative2.txt"])
-                    subprocess.call(["java", "-jar", "scripts"+os.sep+"ModelLearning.jar", alg, "generalization"+os.sep+str(i)+os.sep+"alphabet.txt", "generalization"+os.sep+str(i)+os.sep+"positive.txt","generalization"+os.sep+str(i)+os.sep+"negative3.txt"])
+                    subprocess.call(["java", "-Xms1g", "-Xmx40g","-jar", "scripts"+os.sep+"ModelLearning.jar", alg, "generalization"+os.sep+str(i)+os.sep+"alphabet.txt", "generalization"+os.sep+str(i)+os.sep+"positive.txt","generalization"+os.sep+str(i)+os.sep+"negative1.txt"])
+                    subprocess.call(["java", "-Xms1g", "-Xmx40g","-jar", "scripts"+os.sep+"ModelLearning.jar", alg, "generalization"+os.sep+str(i)+os.sep+"alphabet.txt", "generalization"+os.sep+str(i)+os.sep+"positive.txt","generalization"+os.sep+str(i)+os.sep+"negative2.txt"])
+                    subprocess.call(["java", "-Xms1g", "-Xmx40g","-jar", "scripts"+os.sep+"ModelLearning.jar", alg, "generalization"+os.sep+str(i)+os.sep+"alphabet.txt", "generalization"+os.sep+str(i)+os.sep+"positive.txt","generalization"+os.sep+str(i)+os.sep+"negative3.txt"])
                 #subprocess.call(["python3","scripts"+os.sep+"Minimize.py", k, alg, "generalization"+os.sep+str(i)+os.sep+"alphabet.txt"])
                 subprocess.call(["python3","scripts"+os.sep+"Fitness.py", positive, "generalization"+os.sep, alg, k, behaviors,"False"])
 
@@ -145,7 +145,7 @@ def options(argv):
                 subprocess.call(["python3","scripts"+os.sep+"xes-master"+os.sep+"Buildxes.py",k, os.path.abspath(__file__)[:-8]])
 
                 for i in range(0,int(k)):
-                    subprocess.call(["java", "-jar", "scripts"+os.sep+"ModelLearning.jar", alg, "preprocessing"+os.sep+"alphabet.txt", "generalization"+os.sep+str(i)+os.sep+"positive.txt",""])
+                    subprocess.call(["java", "-Xms1g", "-Xmx40g" ,"-jar", "scripts"+os.sep+"ModelLearning.jar", alg, "preprocessing"+os.sep+"alphabet.txt", "generalization"+os.sep+str(i)+os.sep+"positive.txt",""])
                 #subprocess.call(["python3","scripts"+os.sep+"Minimize.py", k, alg, "preprocessing"+os.sep+"alphabet.txt"])
                 subprocess.call(["python3","scripts"+os.sep+"Fitness.py", "preprocessing"+os.sep+"positive.txt", "preprocessing"+os.sep+"alphabet.txt", "MDL", k, behaviors])
                 
@@ -158,7 +158,7 @@ def options(argv):
                 subprocess.call(["python3","scripts"+os.sep+"xes-master"+os.sep+"Buildxes.py",k, os.path.abspath(__file__)[:-8]])
 
                 for i in range(0,int(k)):
-                    subprocess.call(["java", "-jar", "scripts"+os.sep+"ModelLearning.jar", alg, "generalization"+os.sep+str(i)+os.sep+"alphabet.txt", "generalization"+os.sep+str(i)+os.sep+"positive.txt",""])
+                    subprocess.call(["java","-Xms1g", "-Xmx40g", "-jar", "scripts"+os.sep+"ModelLearning.jar", alg, "generalization"+os.sep+str(i)+os.sep+"alphabet.txt", "generalization"+os.sep+str(i)+os.sep+"positive.txt",""])
                 #subprocess.call(["python3","scripts"+os.sep+"Minimize.py", k, alg, "generalization"+os.sep+str(i)+os.sep+"alphabet.txt"])
                 subprocess.call(["python3","scripts"+os.sep+"Fitness.py", positive, "generalization"+os.sep, "MDL", k, behaviors,"False"])
 
@@ -202,7 +202,7 @@ def options(argv):
                 shutil.rmtree("MDL")
                 
             subprocess.call(["python3","scripts"+os.sep+"DataProcessingMDL.py", event])
-            subprocess.call(["java", "-jar", "scripts"+os.sep+"ModelLearning.jar", alg, "preprocessing"+os.sep+"alphabet.txt", "preprocessing"+os.sep+"positive.txt", ""])
+            subprocess.call(["java", "-Xms1g", "-Xmx40g", "-jar", "scripts"+os.sep+"ModelLearning.jar", alg, "preprocessing"+os.sep+"alphabet.txt", "preprocessing"+os.sep+"positive.txt", ""])
             for i in os.listdir(path):
                 if os.path.isfile(os.path.join(path,i)) and 'automaton' in i:
                     files.append(i)
@@ -212,7 +212,7 @@ def options(argv):
             subprocess.call(["python3","scripts"+os.sep+"xes-master"+os.sep+"Buildxes.py",n, os.path.abspath(__file__)[:-8]])
             
             for i in range(int(n)):
-                subprocess.call(["java", "-jar", "scripts"+os.sep+"ModelLearning.jar", alg, "preprocessing"+os.sep+"alphabet.txt", "generalization"+os.sep+str(i)+os.sep+"positive.txt",""])
+                subprocess.call(["java", "-Xms1g", "-Xmx40g","-jar", "scripts"+os.sep+"ModelLearning.jar", alg, "preprocessing"+os.sep+"alphabet.txt", "generalization"+os.sep+str(i)+os.sep+"positive.txt",""])
                 
             subprocess.call(["python3","scripts"+os.sep+"Fitness.py", "preprocessing"+os.sep+"positive.txt", "preprocessing"+os.sep+"alphabet.txt", "MDL", n, k2])
 
@@ -222,7 +222,7 @@ def options(argv):
                 shutil.rmtree(alg)
 
             subprocess.call(["python3","scripts"+os.sep+"DataProcessing.py", event])
-            subprocess.call(["java", "-jar", "scripts"+os.sep+"ModelLearning.jar", alg, "preprocessing"+os.sep+"alphabet.txt", "preprocessing"+os.sep+"positive.txt", "preprocessing"+os.sep+"negative3.txt"])
+            subprocess.call(["java", "-Xms1g", "-Xmx40g","-jar", "scripts"+os.sep+"ModelLearning.jar", alg, "preprocessing"+os.sep+"alphabet.txt", "preprocessing"+os.sep+"positive.txt", "preprocessing"+os.sep+"negative3.txt"])
             for i in os.listdir(path):
                 if os.path.isfile(os.path.join(path,i)) and 'automaton' in i:
                     files.append(i)
@@ -232,9 +232,9 @@ def options(argv):
             subprocess.call(["python3","scripts"+os.sep+"xes-master"+os.sep+"Buildxes.py",n, os.path.abspath(__file__)[:-8]])
 
             for i in range(int(n)):
-                subprocess.call(["java", "-jar", "scripts"+os.sep+"ModelLearning.jar", alg, "preprocessing"+os.sep+"alphabet.txt", "generalization"+os.sep+str(i)+os.sep+"positive.txt","generalization"+os.sep+str(i)+os.sep+"negative1.txt"])
-                subprocess.call(["java", "-jar", "scripts"+os.sep+"ModelLearning.jar", alg, "preprocessing"+os.sep+"alphabet.txt", "generalization"+os.sep+str(i)+os.sep+"positive.txt","generalization"+os.sep+str(i)+os.sep+"negative2.txt"])
-                subprocess.call(["java", "-jar", "scripts"+os.sep+"ModelLearning.jar", alg, "preprocessing"+os.sep+"alphabet.txt", "generalization"+os.sep+str(i)+os.sep+"positive.txt","generalization"+os.sep+str(i)+os.sep+"negative3.txt"])
+                subprocess.call(["java", "-Xms1g", "-Xmx40g", "-jar", "scripts"+os.sep+"ModelLearning.jar", alg, "preprocessing"+os.sep+"alphabet.txt", "generalization"+os.sep+str(i)+os.sep+"positive.txt","generalization"+os.sep+str(i)+os.sep+"negative1.txt"])
+                subprocess.call(["java", "-Xms1g", "-Xmx40g", "-jar", "scripts"+os.sep+"ModelLearning.jar", alg, "preprocessing"+os.sep+"alphabet.txt", "generalization"+os.sep+str(i)+os.sep+"positive.txt","generalization"+os.sep+str(i)+os.sep+"negative2.txt"])
+                subprocess.call(["java", "-Xms1g", "-Xmx40g", "-jar", "scripts"+os.sep+"ModelLearning.jar", alg, "preprocessing"+os.sep+"alphabet.txt", "generalization"+os.sep+str(i)+os.sep+"positive.txt","generalization"+os.sep+str(i)+os.sep+"negative3.txt"])
             subprocess.call(["python3","scripts"+os.sep+"Fitness.py", "preprocessing"+os.sep+"positive.txt", "preprocessing"+os.sep+"alphabet.txt", alg, n, k2])
 
 

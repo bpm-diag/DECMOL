@@ -38,17 +38,18 @@ def fitnessHung(automaton, positive, alphabet, length, K, reportfile, numfolder,
 
 		#hash table --> key = event, value = alphabet
 		mapping = dict()
-		if len(alphabet) > 52:
+		if len(alphabet) > 256:
 			print("Error, alphabet too big.")
-			sys.error()
+			exit(1)
 		else:
-			x = 97
+			x = 0
 			for i in alphabet:
 				mapping[i] = chr(x)
 				x+=1
+				'''
 				if(x==123):
 					x=65
-
+				'''
 		#my automaton to pythomata automaton
 		states = set()
 		initial_state = "";
@@ -153,7 +154,7 @@ def fitnessHung(automaton, positive, alphabet, length, K, reportfile, numfolder,
 			report.write("\n")
 			#row+=1
 		report.close()
-		subprocess.call(["java", "-jar", "scripts"+os.sep+"Hungarian.jar", "preprocessing"+os.sep+"matrix.txt", reportfile])
+		subprocess.call(["java", "-Xms1g", "-Xmx40g", "-jar", "scripts"+os.sep+"Hungarian.jar", "preprocessing"+os.sep+"matrix.txt", reportfile])
 
 	fitness(automaton, positive, alphabet, length, K, reportfile, numfolder, numaut)
 
