@@ -93,7 +93,7 @@ For computing both positive and negative recall just run
 ```python
 python3 generalization.py pos_log.xes neg_log.xes k h
 ```	
-where k is the order of the Markovian abstraction and h is the number of sublogs.
+where k is the order of the Markovian abstraction and h is the number of sublogs. Note that for computing the generalization ModelLearning.jar must be in the same folder.
 
 
 	
