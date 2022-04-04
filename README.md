@@ -74,4 +74,27 @@ Whether MDL is selected like algorithm the negative file does not have to be spe
 	* &lt;N&gt; : it is the number of sublogs that you want to use for the calculation of the generalization
 	* &lt;K2&gt; : it represents the length of the behaviours that will be used for the calculation of the fitness through the Hungarian Algorithm.
 Whether it is chosen to use one of the algorithms that uses the negative traces is selected the file with 30% of negative traces
+	
+## New Metrics
+It is possible to compute the metrics based on the Markovian abstraction using the files in the *new_metrics* folder. For (positive) precision run
+```python
+python3 precision.py pos_log.xes process.dot k
+```
+where pos_log.xes is the positive log in xes format used for learning the model in process.dot.
+For the negative precision run
+```python
+python3 neg_precision.py neg_log.xes process.dot alphabet.txt k
+```
+where neg_log.xes is the negative log used for learning the model in process.dot and alphabet.txt is the file obtained during the preprocessing (note that the alphabet is now required since the negative precision involves the computation of the complement of a DFA)
+	
+Analougly, for computing the recall.
+
+For computing both positive and negative recall just run
+```python
+python3 generalization.py pos_log.xes neg_log.xes k h
+```	
+where k is the order of the Markovian abstraction and h is the number of sublogs.
+
+
+	
  
