@@ -95,6 +95,18 @@ python3 generalization.py pos_log.xes neg_log.xes k h
 ```	
 where k is the order of the Markovian abstraction and h is the number of sublogs. Note that for computing the generalization ModelLearning.jar must be in the same folder.
 
-
+For splitting the original log in positive and negative run
+```python
+python3 split.py <log_name> <log_folder>
+```
+where <log_name> is the filename of the xes log and <log_folder> the path to the folder containing <log_name>. Remember to include the path separator at the end of <log_folder>. After the execution of this script four different files will be created under the <log_folder> directory:
 	
+	1. <log_name>_positive.txt
+	
+	2. <log_name>_negative.txt
+	
+	3. <log_name>_positive.xes
+	
+	4. <log_name>_negative.xes
  
+First two files will be exploited by ModelLearning.jar for the computation of the automaton, while the last two by the new metrics scripts.
